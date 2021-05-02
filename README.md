@@ -25,7 +25,7 @@ wscript.echo api.getTitle 'Echoes "AzuLan Anime Ero Mousou Hon"
 ### cNhentaiApiv2
 
 The second version of the class using functions and variables.\
-Can be set similarly to the first version or can utilize method chaining.
+Can be set similarly to the first version but can also utilize method chaining.
 
 ```
 set api2 = new cNhentaiApiv2
