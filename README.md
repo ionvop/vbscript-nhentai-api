@@ -1,7 +1,7 @@
 # vbscript-nhentai-api
 A VBScript-based makeshift API for nhentai using only their html data
 
-holy nuke code goes in, details go out
+holy nuke code goes in, metadata goes out
 
 <br>
 
