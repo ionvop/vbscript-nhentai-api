@@ -1,40 +1,41 @@
 # vbscript-nhentai-api
-A VBScript-based makeshift API for nhentai using only their html data
+A VBScript-based API that retrieves the metadata of nhentai doujins. It doen't actually use any API gateways and the data are obtained from the source code of the doujin, so if there's any front-end changes to the site, the whole script might break. Ineffiecient, I know, nothing new. This was made for fun and wasn't made for practical use
+
+This is still a work-in-progress. Right now it can only retrieve 16 different types of metadata (e.g., title, artists, tags) and 1 method `BookID(code)`
+
+I'm still planning to add some updates and changes like instead of having `api.BookID(118282).cover` to retrieve the thumbnail image link while having `api.BookID(118282).Page(91).image` to retrieve image link of a specific page, it would only need `api.BookID(118282).image` to do so.
+I also need to update the private function `funcListMidString()` because I actually found a more optimized version when I was working on the Javascript version of this
+
+
 
 holy nuke code goes in, metadata goes out
 
 <br>
 
-## Classes
-
-### cNhentaiApi
-
-The first version of the class using let and get properties.
+## Methods
 
 ```
-set api = new cNhentaiApi
-api.BookID = 177013
-wscript.echo api.getArtists 'Echoes "shindol"
+'Initialization
+set api = new NhentaiApi
 
-api.BookID = 354125
-wscript.echo api.getTitle 'Echoes "AzuLan Anime Ero Mousou Hon"
+api.BookID(177013) 'Retrieve the metadata for this doujin
+
+api.title
+api.parodies
+api.characters
+api.tags
+api.artists
+api.groups
+api.languages
+api.categories
+api.pages
+api.uploaded
+api.favorites
+api.id
+api.error
+api.fullTitle
+api.cover
+api.statusCode
+
+api.BookID(177013).title 'Returns "METAMORPHOSIS"
 ```
-
-<br>
-
-### cNhentaiApiv2
-
-The second version of the class using functions and variables.\
-Can be set similarly to the first version but can also utilize method chaining.
-
-```
-set api2 = new cNhentaiApiv2
-api2.BookID(177013)
-wscript.echo api2.title 'Echoes "METAMORPHOSIS"
-
-wscript.echo api2.(177013).artists 'Echoes "shindol"
-
-api2.BookID(354125)
-wscript.echo api2.artists 'Echoes ["noukatu", "minase kuru"]
-
-wscript.echo api2.(354125).artists 'Echoes "AzuLan Anime Ero Mousou Hon"
